@@ -75,6 +75,7 @@ function onReceiveRpc(rpcId, bs)
                 end
             end
         end
+        raknetBitStreamResetReadPointer(bs)
     end
 end
 
