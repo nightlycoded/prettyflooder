@@ -50,15 +50,17 @@ function onWindowMessage(msg, wParam, lParam)
                     wait(cfg.general.interval)
                 end
             end)
+        else
+            antiFloodStreak = 0
         end
         consumeWindowMessage(true, false)
     end
 end
 
 function onReceiveRpc(rpcId, bs)
-    if string.len(cfg.general.antiFloodMessage) > 0 and rpcId == 93 then  -- RPC_ClientMessage
+    if flooding and string.len(cfg.general.antiFloodMessage) > 0 and rpcId == 93 then  -- RPC_ClientMessage
         raknetBitStreamResetReadPointer(bs)
-        local color = raknetBitStreamReadInt32(bs)
+        raknetBitStreamIgnoreBits(bs, 32)
         local textLen = raknetBitStreamReadInt32(bs)
         if textLen > 0 then
             local text = raknetBitStreamReadString(bs, textLen)
