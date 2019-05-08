@@ -1,6 +1,6 @@
 script_name('Pretty Flooder')
 script_author('r4nx')
-script_version('0.0.1')
+script_version('1.0.0-alpha')
 
 local inicfg = require 'inicfg'
 
